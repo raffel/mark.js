@@ -31,10 +31,6 @@
     "type": "git",
     "url": "git://github.com/julmot/mark.js.git"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "jquery": ">1.10"
-  },
   "ignore": [
     "*",
     "!dist/*",

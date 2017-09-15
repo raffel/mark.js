@@ -10,7 +10,7 @@ module.exports = config => {
     basePath: '',
     frameworks: ['jasmine-jquery', 'jasmine'],
     files: [
-      'vendor/jquery/dist/jquery.min.js',
+      'node_modules/jquery/dist/jquery.min.js',
       'dist/!(*.es6|*.min).js',
       'test/specs/configuration.js',
       'test/specs/basic/done.js',
