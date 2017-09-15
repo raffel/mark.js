@@ -1,0 +1,6 @@
+# This file isn't necessary for the build. Just for editors with ESLint support
+vendor/
+nodes_modules/
+dist/
+build/coverage
+build/doc
