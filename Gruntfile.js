@@ -30,7 +30,7 @@ module.exports = grunt => {
       },
       es5: {
         options: {
-          presets: ['es2015'],
+          presets: ['env'],
           plugins: ['transform-object-assign']
         },
         files: [{
