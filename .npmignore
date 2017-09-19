@@ -17,4 +17,3 @@ npm-debug.log*
 build/*.js
 build/doc/
 build/coverage/
-dist/
