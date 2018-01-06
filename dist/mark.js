@@ -51,6 +51,26 @@ var createClass = function () {
   };
 }();
 
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
 /**
  * Marks search terms in DOM elements
  * @example
@@ -1338,7 +1358,7 @@ var Mark$1 = function () {
   }, {
     key: 'opt',
     set: function set$$1(val) {
-      this._opt = Object.assign({}, {
+      this._opt = _extends({}, {
         'element': '',
         'className': '',
         'exclude': [],
