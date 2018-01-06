@@ -4,7 +4,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import babel from 'rollup-plugin-babel';
 
+// Shared config
 const output = {
     name: 'window',
     file: pkg.main,
@@ -25,19 +27,7 @@ const output = {
       })()
     })
   },
-  plugins = [
-    // for external dependencies (just in case)
-    resolve(),
-    commonjs()
-  ];
-
-export default [{
-  input: 'src/vanilla.js',
-  output,
-  plugins
-}, {
-  input: 'src/jquery.js',
-  output: Object.assign({}, output, {
+  outputJquery = Object.assign({}, output, {
     file: (() => {
       const spl = pkg.main.split('/');
       spl[spl.length - 1] = `jquery.${spl[spl.length - 1]}`;
@@ -47,6 +37,47 @@ export default [{
       'jquery': 'jQuery'
     }
   }),
+  externalJquery = ['jquery'],
+  plugins = [
+    // for external dependencies (just in case)
+    resolve(),
+    commonjs()
+  ],
+  pluginsES5 = (() => {
+    const newPlugins = plugins.slice();
+    newPlugins.push(babel({
+      exclude: 'node_modules/**',
+      'presets': [
+        ['env', {
+          'modules': false
+        }]
+      ],
+      'plugins': ['external-helpers']
+    }));
+    return newPlugins;
+  })();
+
+// Actual config export
+export default [{
+  input: 'src/vanilla.js',
+  output: Object.assign({}, output, {
+    file: output.file.replace('.js', '.es6.js')
+  }),
+  plugins
+}, {
+  input: 'src/jquery.js',
+  output: Object.assign({}, outputJquery, {
+    file: outputJquery.file.replace('.js', '.es6.js')
+  }),
   plugins,
-  external: ['jquery']
+  external: externalJquery
+}, {
+  input: 'src/vanilla.js',
+  output,
+  plugins: pluginsES5
+}, {
+  input: 'src/jquery.js',
+  output: outputJquery,
+  plugins: pluginsES5,
+  external: externalJquery
 }];
