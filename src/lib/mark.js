@@ -1,9 +1,3 @@
-/*!***************************************************
- * mark.js v8.11.0
- * https://github.com/julmot/mark.js
- * Copyright (c) 2014–2018, Julian Kühnel
- * Released under the MIT license https://git.io/vwTVl
- *****************************************************/
 /**
  * Marks search terms in DOM elements
  * @example
@@ -11,7 +5,7 @@
  * @example
  * new Mark(document.querySelector(".context")).markRegExp(/lorem/gmi);
  */
-class Mark { // eslint-disable-line no-unused-vars
+export class Mark { // eslint-disable-line no-unused-vars
 
   /**
    * @param {HTMLElement|HTMLElement[]|NodeList|string} ctx - The context DOM

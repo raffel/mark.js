@@ -13,7 +13,6 @@ node_modules/
 TODO
 npm-debug.log*
 
-# Build (do not ignore templates)
-build/*.js
+# Build
 build/doc/
 build/coverage/
