@@ -52,7 +52,10 @@ const output = {
           'modules': false
         }]
       ],
-      'plugins': ['external-helpers']
+      'plugins': [
+        'external-helpers',
+        'transform-object-assign'
+      ]
     }));
     return newPlugins;
   })();
