@@ -1,4 +1,4 @@
-import {Mark} from './lib/mark';
+import Mark from './lib/mark';
 import $ from 'jquery';
 
 $.fn.mark = function(sv, opt) {

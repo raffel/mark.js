@@ -1,5 +1,5 @@
 import pkg from '../package.json';
-import Handlebars from 'handlebars';
+import handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
@@ -12,7 +12,7 @@ const output = {
     file: pkg.main,
     format: 'umd',
     extend: true,
-    banner: Handlebars.compile(fs.readFileSync(path.join(
+    banner: handlebars.compile(fs.readFileSync(path.join(
       __dirname, 'templates/copyright.hbs'
     ), 'utf8'))({
       name: pkg.name.split('/').pop(),

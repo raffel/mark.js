@@ -1,4 +1,4 @@
-import {Mark as MarkJS} from './lib/mark';
+import MarkJS from './lib/mark';
 
 export function Mark(ctx) {
   const instance = new MarkJS(ctx);
