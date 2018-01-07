@@ -27,8 +27,9 @@
     "url": "https://github.com/julmot/mark.js/issues"
   },
   "scripts": {
-    "build": "eslint src/ test/ && rollup -c build/rollup.config.js",
-    "dev": "rollup -c rollup.config.js -w",
+    "build": "eslint src/ test/ && rollup -c build/rollup.config.js && npm run karma",
+    "karma": "karma start build/karma.config.js",
+    "karma-ci": "karma start build/karma.config-ci.js",
     "test": "npm run build"
   },
   "devDependencies": {

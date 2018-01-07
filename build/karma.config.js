@@ -1,7 +1,7 @@
 'use strict';
 module.exports = config => {
   config.set({
-    basePath: '',
+    basePath: '../',
     frameworks: ['jasmine-jquery', 'jasmine'],
     files: [
       'node_modules/jquery/dist/jquery.min.js',
@@ -57,7 +57,7 @@ module.exports = config => {
       'dist/mark.js': ['coverage']
     },
     coverageReporter: {
-      dir: 'build/coverage/',
+      dir: './build/coverage/',
       reporters: [{
         type: 'html'
       }, {
