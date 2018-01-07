@@ -5,6 +5,8 @@ import * as path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import uglify from 'rollup-plugin-uglify';
+import minify from 'uglify-es';
 
 // Shared config
 const output = {
@@ -58,6 +60,26 @@ const output = {
       ]
     }));
     return newPlugins;
+  })(),
+  minifyPlugins = (() => {
+    const newPlugins = plugins.slice();
+    newPlugins.push(uglify({
+      warnings: true,
+      output: {
+        comments: /^!/
+      }
+    }, minify.minify));
+    return newPlugins;
+  })(),
+  minifyPluginsES5 = (() => {
+    const newPlugins = pluginsES5.slice();
+    newPlugins.push(uglify({
+      warnings: true,
+      output: {
+        comments: /^!/
+      }
+    }, minify.minify));
+    return newPlugins;
   })();
 
 // Actual config export
@@ -82,5 +104,31 @@ export default [{
   input: 'src/jquery.js',
   output: outputJquery,
   plugins: pluginsES5,
+  external: externalJquery
+}, {
+  input: 'src/vanilla.js',
+  output: Object.assign({}, output, {
+    file: output.file.replace('.js', '.es6.min.js')
+  }),
+  plugins: minifyPlugins,
+}, {
+  input: 'src/jquery.js',
+  output: Object.assign({}, outputJquery, {
+    file: outputJquery.file.replace('.js', '.es6.min.js')
+  }),
+  plugins: minifyPlugins,
+  external: externalJquery
+}, {
+  input: 'src/vanilla.js',
+  output: Object.assign({}, output, {
+    file: output.file.replace('.js', '.min.js')
+  }),
+  plugins: minifyPluginsES5
+}, {
+  input: 'src/jquery.js',
+  output: Object.assign({}, outputJquery, {
+    file: outputJquery.file.replace('.js', '.min.js')
+  }),
+  plugins: minifyPluginsES5,
   external: externalJquery
 }];
