@@ -6,7 +6,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
-import minify from 'uglify-es';
+import {minify} from 'uglify-es';
 
 // Shared config
 const output = {
@@ -68,7 +68,7 @@ const output = {
       output: {
         comments: /^!/
       }
-    }, minify.minify));
+    }, minify));
     return newPlugins;
   })(),
   minifyPluginsES5 = (() => {
@@ -78,7 +78,7 @@ const output = {
       output: {
         comments: /^!/
       }
-    }, minify.minify));
+    }, minify));
     return newPlugins;
   })();
 
