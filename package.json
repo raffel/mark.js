@@ -27,9 +27,11 @@
     "url": "https://github.com/julmot/mark.js/issues"
   },
   "scripts": {
-    "build": "eslint src/ test/ && rollup -c build/rollup.config.js && npm run karma",
+    "eslint": "eslint src/ test/",
     "karma": "karma start build/karma.config.js",
     "karma-ci": "karma start build/karma.config-ci.js",
+    "jsdoc": "jsdoc src/lib/ -d build/doc -R README.md -P package.json -r",
+    "build": "npm run eslint && rollup -c build/rollup.config.js && npm run karma && npm run jsdoc",
     "test": "npm run build"
   },
   "devDependencies": {
@@ -42,6 +44,7 @@
     "handlebars": "^4.0.11",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.2.1",
+    "jsdoc": "^3.5.5",
     "karma": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",

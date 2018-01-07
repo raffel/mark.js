@@ -16,7 +16,7 @@
  * }, () => {
  *     console.log("DONE");
  * });
- * @todo Outsource into separate repository and include it in the build
+ * @todo Outsource into separate repository
  */
 export default class DOMIterator {
 
